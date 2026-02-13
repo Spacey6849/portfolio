@@ -1,0 +1,6 @@
+Moses Rodrigues Resume Placeholder
+
+Please replace this file with your final PDF resume at:
+/public/resume.pdf
+
+Then update the hero section download link in src/sections/hero-section.tsx if needed.

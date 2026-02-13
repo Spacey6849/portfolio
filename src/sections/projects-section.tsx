@@ -240,11 +240,21 @@ export function ProjectsSection() {
 
                   {/* Action Buttons */}
                   <div className="mt-8 flex flex-wrap gap-3">
+                    {(activeProject as any).live && (
+                      <a
+                        href={(activeProject as any).live}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition-opacity hover:opacity-90"
+                      >
+                        <ExternalLink size={16} /> Live Demo
+                      </a>
+                    )}
                     <a
                       href={activeProject.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 transition-opacity hover:opacity-90"
+                      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90 ${(activeProject as any).live ? "border border-white/15 text-zinc-300 hover:bg-white/10" : "bg-gradient-to-r from-cyan-400 to-purple-500 text-zinc-950"}`}
                     >
                       <Github size={16} /> View Repository
                     </a>

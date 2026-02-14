@@ -320,19 +320,29 @@ export const allProjects = projectsData;
 
 export const experiences = [
   {
-    title: "National-Level Hackathon Finalist",
-    subtitle: "Built an end-to-end IoT prototype under 24-hour constraints",
-    year: "2025",
+    company: "PTWO Technologies",
+    role: "Frontend Developer",
+    duration: "September 2025 - November 2025 (3 months)",
+    description: "",
   },
   {
-    title: "Embedded Systems Internship",
-    subtitle: "Worked on microcontroller firmware optimization and sensor calibration",
-    year: "2024",
+    company: "Lenovo",
+    role: "Artificial Intelligence Intern",
+    duration: "June 2025 - July 2025 (2 months)",
+    location: "Goa, India",
+  },
+];
+
+export const education = [
+  {
+    institution: "Agnel Institute of Technology and Design",
+    degree: "Bachelor of Engineering - BE, electronics and computer",
+    duration: "August 2023 - September 2027",
   },
   {
-    title: "AI & IoT Certification",
-    subtitle: "Completed applied learning in ML integration for connected systems",
-    year: "2024",
+    institution: "Don Bosco Higher Secondary School, Goa",
+    degree: "science",
+    duration: "2020 - 2022",
   },
 ];
 

@@ -56,20 +56,17 @@ export function Navbar() {
       }}
       transition={{ duration: 0.35, ease: "easeInOut" }}
       className={`fixed inset-x-0 top-4 z-50 mx-auto w-[min(92%,56rem)] rounded-full border px-5 py-2.5 backdrop-blur-xl transition-colors duration-300 ${scrolled
-          ? "border-white/15 bg-zinc-950/70 shadow-lg shadow-black/20"
-          : "border-white/10 bg-zinc-950/40"
+        ? "border-white/15 bg-zinc-950/70 shadow-lg shadow-black/20"
+        : "border-white/10 bg-zinc-950/40"
         }`}
     >
       <nav className="flex items-center justify-between">
         {/* Logo */}
         <a
           href="#home"
-          className="group relative flex items-center gap-2 text-sm font-bold tracking-[0.18em] text-white"
+          className="group relative flex items-center text-sm font-bold text-white"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-purple-500 text-[11px] font-black text-zinc-950">
-            M
-          </span>
-          <span className="transition-colors group-hover:text-cyan-300">MOSES</span>
+          <span className="transition-colors group-hover:text-cyan-300">Moses Rodrigues</span>
         </a>
 
         {/* Desktop Links */}
@@ -81,8 +78,8 @@ export function Navbar() {
                 <a
                   href={link.href}
                   className={`relative rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 ${isActive
-                      ? "text-white"
-                      : "text-zinc-400 hover:text-zinc-200"
+                    ? "text-white"
+                    : "text-zinc-400 hover:text-zinc-200"
                     }`}
                 >
                   {isActive && (
@@ -137,8 +134,8 @@ export function Navbar() {
                       href={link.href}
                       onClick={() => setOpen(false)}
                       className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${isActive
-                          ? "bg-white/10 text-white"
-                          : "text-zinc-400 hover:bg-white/5 hover:text-zinc-200"
+                        ? "bg-white/10 text-white"
+                        : "text-zinc-400 hover:bg-white/5 hover:text-zinc-200"
                         }`}
                     >
                       {link.label}

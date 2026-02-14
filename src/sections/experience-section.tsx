@@ -15,59 +15,64 @@ export function ExperienceSection() {
 
       <div className="grid gap-12 md:grid-cols-2">
         {/* Experience Column */}
-        <div className="relative space-y-8 pl-8">
-          <div className="absolute left-2 top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-cyan-400/50 to-purple-500/50" />
+        <div className="space-y-8">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 border border-white/10 text-xl shadow-inner">💼</div>
+            <h3 className="text-2xl font-bold text-white">Experience</h3>
+          </div>
 
-          <h3 className="mb-6 text-2xl font-bold text-white relative -left-8 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-xl">💼</span>
-            Experience
-          </h3>
+          <div className="relative border-l border-white/10 ml-5 space-y-8">
+            {experiences.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative group pl-8"
+              >
+                <div className="absolute -left-[6.5px] top-4 h-3 w-3 rounded-full bg-cyan-400 border border-zinc-950 shadow-[0_0_8px_rgba(34,211,238,0.6)] ring-4 ring-zinc-950" />
 
-          {experiences.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:bg-white/[0.04] transition-colors"
-            >
-              <span className="absolute -left-[2.05rem] top-6 h-3 w-3 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.8)] border border-black" />
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-semibold uppercase tracking-wider text-purple-300">{item.duration}</span>
-                <h4 className="text-lg font-bold text-white">{item.role}</h4>
-                <p className="text-sm font-medium text-cyan-200">{item.company}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent p-5 transition-all hover:bg-white/[0.05] hover:border-white/10 hover:shadow-lg hover:shadow-cyan-900/10">
+                  <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-purple-300">{item.duration}</span>
+                  <h4 className="text-lg font-bold text-white">{item.role}</h4>
+                  <p className="font-medium text-cyan-100/90">{item.company}</p>
+                  {item.description && (
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-400">{item.description}</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Education Column */}
-        <div className="relative space-y-8 pl-8">
-          <div className="absolute left-2 top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-purple-500/50 to-cyan-400/50" />
+        <div className="space-y-8">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 border border-white/10 text-xl shadow-inner">🎓</div>
+            <h3 className="text-2xl font-bold text-white">Education</h3>
+          </div>
 
-          <h3 className="mb-6 text-2xl font-bold text-white relative -left-8 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 border border-white/10 text-xl">🎓</span>
-            Education
-          </h3>
+          <div className="relative border-l border-white/10 ml-5 space-y-8">
+            {education.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative group pl-8"
+              >
+                <div className="absolute -left-[6.5px] top-4 h-3 w-3 rounded-full bg-purple-400 border border-zinc-950 shadow-[0_0_8px_rgba(192,132,252,0.6)] ring-4 ring-zinc-950" />
 
-          {education.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="relative rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:bg-white/[0.04] transition-colors"
-            >
-              <span className="absolute -left-[2.05rem] top-6 h-3 w-3 rounded-full bg-purple-400 shadow-[0_0_12px_rgba(192,132,252,0.8)] border border-black" />
-              <div className="flex flex-col gap-1">
-                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">{item.duration}</span>
-                <h4 className="text-lg font-bold text-white">{item.degree}</h4>
-                <p className="text-sm font-medium text-zinc-300">{item.institution}</p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent p-5 transition-all hover:bg-white/[0.05] hover:border-white/10 hover:shadow-lg hover:shadow-purple-900/10">
+                  <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-cyan-300">{item.duration}</span>
+                  <h4 className="text-lg font-bold text-white">{item.degree}</h4>
+                  <p className="font-medium text-zinc-300">{item.institution}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

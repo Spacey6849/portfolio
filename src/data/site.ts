@@ -322,13 +322,13 @@ export const experiences = [
   {
     company: "PTWO Technologies",
     role: "Frontend Developer",
-    duration: "September 2025 - November 2025 (3 months)",
-    description: "",
+    duration: "Sep 2025 – Nov 2025",
+    description: "Developed responsive user interfaces and optimized frontend performance.",
   },
   {
     company: "Lenovo",
     role: "Artificial Intelligence Intern",
-    duration: "June 2025 - July 2025 (2 months)",
+    duration: "Jun 2025 – Jul 2025",
     location: "Goa, India",
   },
 ];
@@ -336,13 +336,13 @@ export const experiences = [
 export const education = [
   {
     institution: "Agnel Institute of Technology and Design",
-    degree: "Bachelor of Engineering - BE, electronics and computer",
-    duration: "August 2023 - September 2027",
+    degree: "B.E. in Electronics & Computer Eng.",
+    duration: "2023 – 2027",
   },
   {
-    institution: "Don Bosco Higher Secondary School, Goa",
-    degree: "science",
-    duration: "2020 - 2022",
+    institution: "Don Bosco Higher Secondary School",
+    degree: "Higher Secondary (Science)",
+    duration: "2020 – 2022",
   },
 ];
 

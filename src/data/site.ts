@@ -80,6 +80,11 @@ const projectsData = [
     gradient: "from-cyan-500/20 via-blue-500/20 to-purple-500/20",
     icon: "💧",
     role: "Full-Stack & IoT Engineer",
+    cardImage: "/projects/SmartWellManagement/Map&Dashboard.png",
+    gallery: [
+      "/projects/SmartWellManagement/Map&Dashboard.png",
+      "/projects/SmartWellManagement/analytics.png",
+    ],
     duration: "2025",
     highlights: [
       "Built IoT sensor network for real-time well water monitoring",
@@ -107,6 +112,16 @@ const projectsData = [
     gradient: "from-lime-500/20 via-green-500/20 to-emerald-500/20",
     icon: "🌾",
     role: "Full-Stack & ML Engineer",
+    cardImage: "/projects/CropGuard/LandingPage.png",
+    gallery: [
+      "/projects/CropGuard/LandingPage.png",
+      "/projects/CropGuard/Dashboard.png",
+      "/projects/CropGuard/chat.png",
+      "/projects/CropGuard/history.png",
+      "/projects/CropGuard/Resources.png",
+      "/projects/CropGuard/Help.png",
+      "/projects/CropGuard/profile.png",
+    ],
     duration: "2024 – 2025",
     highlights: [
       "Fine-tuned image classification model for crop disease detection",
@@ -133,6 +148,13 @@ const projectsData = [
     gradient: "from-purple-500/20 via-pink-500/20 to-rose-500/20",
     icon: "🔐",
     role: "Embedded Systems & Full-Stack Developer",
+    cardImage: "/projects/SmartDualFingerprintAttendanceSystem/SmartDualFingerprintAttendanceSystem.jpg",
+    gallery: [
+      "/projects/SmartDualFingerprintAttendanceSystem/SmartDualFingerprintAttendanceSystem.jpg",
+      "/projects/SmartDualFingerprintAttendanceSystem/462628637-76c746f6-4fb3-4f1e-b5f1-9fcd44bbceb0.png",
+      "/projects/SmartDualFingerprintAttendanceSystem/462628737-807684f2-7f34-41ca-bccb-cbc7dc85fb40.png",
+      "/projects/SmartDualFingerprintAttendanceSystem/462628762-252ea740-a55b-4bb2-b64f-65e6ea208dbf.png",
+    ],
     duration: "2024",
     highlights: [
       "Designed dual fingerprint scanner hardware module with ESP32",
@@ -162,6 +184,15 @@ const projectsData = [
     gradient: "from-emerald-500/20 via-teal-500/20 to-cyan-500/20",
     icon: "♻️",
     role: "IoT & Full-Stack Developer",
+    cardImage: "/projects/BinLinkAI/LandingPage.png",
+    gallery: [
+      "/projects/BinLinkAI/LandingPage.png",
+      "/projects/BinLinkAI/Map&Dashboard.png",
+      "/projects/BinLinkAI/Analytics.png",
+      "/projects/BinLinkAI/Chatbot.png",
+      "/projects/BinLinkAI/MarkerCard.png",
+      "/projects/BinLinkAI/setup.png",
+    ],
     duration: "2024 – 2025",
     highlights: [
       "Programmed 8051 and ESP32 microcontrollers for waste bin sensors",
@@ -188,6 +219,19 @@ const projectsData = [
     gradient: "from-violet-500/20 via-purple-500/20 to-fuchsia-500/20",
     icon: "🧠",
     role: "Full-Stack Developer",
+    cardImage: "/projects/WellnessAI/LandingPage.png",
+    gallery: [
+      "/projects/WellnessAI/LandingPage.png",
+      "/projects/WellnessAI/Dashboard1.png",
+      "/projects/WellnessAI/Dashboard2.png",
+      "/projects/WellnessAI/Dashboard3.png",
+      "/projects/WellnessAI/Chatmode.png",
+      "/projects/WellnessAI/Speechmode.png",
+      "/projects/WellnessAI/Community.png",
+      "/projects/WellnessAI/Resources.png",
+      "/projects/WellnessAI/booking1.png",
+      "/projects/WellnessAI/booking2.png",
+    ],
     duration: "2025",
     highlights: [
       "Built AI-assisted resource curation for mental wellness",
@@ -240,6 +284,10 @@ const projectsData = [
     gradient: "from-slate-500/20 via-zinc-500/20 to-neutral-500/20",
     icon: "📋",
     role: "Backend Developer",
+    cardImage: "/projects/LogExplainAPI/LandingPage.png",
+    gallery: [
+      "/projects/LogExplainAPI/LandingPage.png",
+    ],
     duration: "2025 – Present",
     wip: true,
     highlights: [
@@ -267,6 +315,11 @@ const projectsData = [
     gradient: "from-red-500/20 via-rose-500/20 to-pink-500/20",
     icon: "🏥",
     role: "Full-Stack & IoT Engineer",
+    cardImage: "/projects/PalliativeCare/LandingPage.png",
+    gallery: [
+      "/projects/PalliativeCare/LandingPage.png",
+      "/projects/PalliativeCare/Map.png",
+    ],
     duration: "2025 – Present",
     wip: true,
     highlights: [

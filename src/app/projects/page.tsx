@@ -6,11 +6,10 @@ import {
     Calendar,
     ExternalLink,
     Github,
-    ImageIcon,
-    Star,
     Wrench,
     X,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { allProjects } from "@/data/site";
@@ -72,20 +71,32 @@ export default function ProjectsPage() {
                             <div
                                 className={`relative h-44 w-full overflow-hidden bg-gradient-to-br ${project.gradient}`}
                             >
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.08),transparent_60%)]" />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="text-5xl opacity-60 transition-transform duration-500 group-hover:scale-125">
-                                        {project.icon}
-                                    </span>
-                                </div>
-                                <div
-                                    className="absolute inset-0 opacity-[0.07]"
-                                    style={{
-                                        backgroundImage:
-                                            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-                                        backgroundSize: "24px 24px",
-                                    }}
-                                />
+                                {(project as any).cardImage ? (
+                                    <Image
+                                        src={(project as any).cardImage}
+                                        alt={project.title}
+                                        fill
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.08),transparent_60%)]" />
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <span className="text-5xl opacity-60 transition-transform duration-500 group-hover:scale-125">
+                                                {project.icon}
+                                            </span>
+                                        </div>
+                                        <div
+                                            className="absolute inset-0 opacity-[0.07]"
+                                            style={{
+                                                backgroundImage:
+                                                    "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                                                backgroundSize: "24px 24px",
+                                            }}
+                                        />
+                                    </>
+                                )}
                                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-950/80 to-transparent" />
                                 {(project as any).wip && (
                                     <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1 text-xs font-medium text-amber-200 backdrop-blur-sm">
@@ -97,7 +108,7 @@ export default function ProjectsPage() {
                             {/* Content */}
                             <div className="flex flex-1 flex-col p-5">
                                 <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-                                <p className="mt-1 text-xs text-zinc-500">{project.role} · {project.duration}</p>
+                                <p className="mt-1 text-xs text-zinc-500">{project.duration}</p>
                                 <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                                     {project.summary}
                                 </p>
@@ -168,18 +179,30 @@ export default function ProjectsPage() {
                                     <div
                                         className={`relative h-56 w-full overflow-hidden bg-gradient-to-br ${activeProject.gradient} md:h-64 md:rounded-tl-3xl`}
                                     >
-                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_60%)]" />
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <span className="text-7xl opacity-50">{activeProject.icon}</span>
-                                        </div>
-                                        <div
-                                            className="absolute inset-0 opacity-[0.06]"
-                                            style={{
-                                                backgroundImage:
-                                                    "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-                                                backgroundSize: "20px 20px",
-                                            }}
-                                        />
+                                        {(activeProject as any).cardImage ? (
+                                            <Image
+                                                src={(activeProject as any).cardImage}
+                                                alt={activeProject.title}
+                                                fill
+                                                className="object-cover"
+                                                sizes="(max-width: 768px) 100vw, 50vw"
+                                            />
+                                        ) : (
+                                            <>
+                                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.1),transparent_60%)]" />
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <span className="text-7xl opacity-50">{activeProject.icon}</span>
+                                                </div>
+                                                <div
+                                                    className="absolute inset-0 opacity-[0.06]"
+                                                    style={{
+                                                        backgroundImage:
+                                                            "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
+                                                        backgroundSize: "20px 20px",
+                                                    }}
+                                                />
+                                            </>
+                                        )}
                                         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-zinc-950/90 to-transparent" />
                                     </div>
 
@@ -204,21 +227,29 @@ export default function ProjectsPage() {
                                             </div>
                                         </div>
 
-                                        <div className="mt-6">
-                                            <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                                                More Photos & Video
-                                            </h4>
-                                            <div className="grid grid-cols-3 gap-2">
-                                                {[1, 2, 3].map((i) => (
-                                                    <div
-                                                        key={i}
-                                                        className={`flex aspect-video items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br ${activeProject.gradient} opacity-60`}
-                                                    >
-                                                        <ImageIcon size={20} className="text-white/40" />
-                                                    </div>
-                                                ))}
+                                        {(activeProject as any).gallery && (activeProject as any).gallery.length > 0 && (
+                                            <div className="mt-6">
+                                                <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                                                    More Photos & Video
+                                                </h4>
+                                                <div className="grid grid-cols-3 gap-2">
+                                                    {(activeProject as any).gallery.map((img: string, i: number) => (
+                                                        <div
+                                                            key={i}
+                                                            className="relative aspect-video overflow-hidden rounded-xl border border-white/10"
+                                                        >
+                                                            <Image
+                                                                src={img}
+                                                                alt={`${activeProject.title} screenshot ${i + 1}`}
+                                                                fill
+                                                                className="object-cover transition-transform duration-300 hover:scale-110"
+                                                                sizes="150px"
+                                                            />
+                                                        </div>
+                                                    ))}
+                                                </div>
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
                                 </div>
 
@@ -227,10 +258,6 @@ export default function ProjectsPage() {
                                     <h2 className="text-2xl font-bold text-white">{activeProject.title}</h2>
 
                                     <div className="mt-3 flex flex-wrap gap-4 text-sm text-zinc-400">
-                                        <span className="flex items-center gap-1.5">
-                                            <Star size={14} className="text-cyan-400" />
-                                            {activeProject.role}
-                                        </span>
                                         <span className="flex items-center gap-1.5">
                                             <Calendar size={14} className="text-purple-400" />
                                             {activeProject.duration}

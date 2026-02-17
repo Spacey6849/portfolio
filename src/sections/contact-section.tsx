@@ -1,17 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Loader2, Mail, Send } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { SectionHeading } from "@/components/section-heading";
 import { socialLinks } from "@/data/site";
 
 export function ContactSection() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    setStatus("sending");
+
+    const form = event.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+      setStatus("sent");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   };
 
   return (
@@ -54,14 +75,27 @@ export function ContactSection() {
           className="mt-4 w-full rounded-xl border border-white/10 bg-zinc-900/70 px-4 py-3 text-sm text-zinc-100 outline-none transition focus:border-cyan-300/60"
         />
 
-        <motion.button
-          whileTap={{ scale: 0.97 }}
-          whileHover={{ y: -2 }}
-          type="submit"
-          className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-sm font-semibold text-zinc-950"
-        >
-          {sent ? "Message Sent" : "Send Message"} <Send size={16} />
-        </motion.button>
+        <div className="mt-4 flex items-center gap-4">
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            whileHover={{ y: -2 }}
+            type="submit"
+            disabled={status === "sending"}
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-6 py-3 text-sm font-semibold text-zinc-950 disabled:opacity-60"
+          >
+            {status === "sending" ? (
+              <>Sending… <Loader2 size={16} className="animate-spin" /></>
+            ) : status === "sent" ? (
+              <>Message Sent ✓</>
+            ) : (
+              <>Send Message <Send size={16} /></>
+            )}
+          </motion.button>
+
+          {status === "error" && (
+            <p className="text-sm text-red-400">Something went wrong. Please try again.</p>
+          )}
+        </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-zinc-300">
           <a href={socialLinks.email} className="inline-flex items-center gap-2 hover:text-white">

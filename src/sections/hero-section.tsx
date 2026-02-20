@@ -74,7 +74,7 @@ export function HeroSection() {
             View Projects <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
           </a>
           <a
-            href="/resume.txt"
+            href="/doc/resume.pdf"
             download
             className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-zinc-100 transition hover:bg-white/10"
           >

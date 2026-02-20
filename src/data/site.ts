@@ -3,7 +3,7 @@ export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+
 ];
 
 export const rotatingRoles = [
@@ -72,7 +72,7 @@ const projectsData = [
     title: "Smart Well Management",
     stack: ["IoT", "ESP32", "Next.js", "Supabase", "AI"],
     summary:
-      "A comprehensive platform to streamline water resource management in urban areas using IoT sensors for real-time monitoring and AI for predictive analytics.",
+      "Smart well management with EcoWell AI—real-time monitoring, secure access, and interactive maps for groundwater insights. Built with Next.js, Supabase, and modern web tech.",
     details:
       "Designed and deployed IoT sensor nodes for well water-level and quality monitoring, built interactive map-based dashboards, and integrated AI-driven alerts for predictive maintenance and resource allocation.",
     github: "https://github.com/Spacey6849/Smart-Well-Management",
@@ -122,7 +122,7 @@ const projectsData = [
       "/projects/CropGuard/Help.png",
       "/projects/CropGuard/profile.png",
     ],
-    duration: "2024 – 2025",
+    duration: "2025",
     highlights: [
       "Fine-tuned image classification model for crop disease detection",
       "Built FastAPI backend with Supabase edge functions",
@@ -193,7 +193,7 @@ const projectsData = [
       "/projects/BinLinkAI/MarkerCard.png",
       "/projects/BinLinkAI/setup.png",
     ],
-    duration: "2024 – 2025",
+    duration: "2025",
     highlights: [
       "Programmed 8051 and ESP32 microcontrollers for waste bin sensors",
       "Built real-time fill-level monitoring with map visualization",
@@ -258,7 +258,7 @@ const projectsData = [
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     icon: "📝",
     role: "Full-Stack Developer",
-    duration: "2024",
+    duration: "2025",
     highlights: [
       "Built OCR pipeline in Python for answer sheet text extraction",
       "Designed PHP web interface for bulk answer sheet uploads",
@@ -288,7 +288,7 @@ const projectsData = [
     gallery: [
       "/projects/LogExplainAPI/LandingPage.png",
     ],
-    duration: "2025 – Present",
+    duration: "2026",
     wip: true,
     highlights: [
       "Designing AI pipeline for log-to-English translation",
@@ -320,7 +320,7 @@ const projectsData = [
       "/projects/PalliativeCare/LandingPage.png",
       "/projects/PalliativeCare/Map.png",
     ],
-    duration: "2025 – Present",
+    duration: "2026",
     wip: true,
     highlights: [
       "Designing ESP8266 wearable sensor for heart rate & SpO2",
@@ -347,7 +347,7 @@ const projectsData = [
     gradient: "from-indigo-500/20 via-blue-500/20 to-sky-500/20",
     icon: "🤖",
     role: "AI Developer",
-    duration: "2025 – Present",
+    duration: "2026",
     wip: true,
     highlights: [
       "Designing personal AI with custom personality and context",
@@ -376,13 +376,14 @@ export const experiences = [
     company: "PTWO Technologies",
     role: "Frontend Developer",
     duration: "Sep 2025 – Nov 2025",
-    description: "Developed responsive user interfaces and optimized frontend performance.",
+    description: "Developed responsive, high-performance user interfaces by converting Figma designs into clean, component-based React code.",
   },
   {
     company: "Lenovo",
     role: "Artificial Intelligence Intern",
     duration: "Jun 2025 – Jul 2025",
     location: "Goa, India",
+    description: "Built NLP pipelines and a functional chatbot using Botpress, applying machine learning techniques to real-world AI challenges.",
   },
 ];
 

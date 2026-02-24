@@ -173,6 +173,47 @@ const projectsData = [
 
   // ─── Additional projects ───
   {
+    title: "BloodConnect",
+    stack: ["Next.js", "Supabase", "Geospatial", "AI", "TypeScript"],
+    summary:
+      "A role-based web platform connecting hospitals, blood banks, and donors to coordinate emergency blood needs in real time — with geospatial maps, inventory management, blood compatibility guidance, and multi-channel notifications.",
+    details:
+      "BloodConnect combines geospatial awareness, inventory tracking, request/fulfillment workflows, blood compatibility guidance, demand forecasting, and multi-channel notifications into a single dashboard-driven application. It supports three distinct roles — hospitals, blood banks, and donors — each with tailored dashboards, request workflows, and community camp coordination tools.",
+    github: "https://github.com/Spacey6849/BloodConnect",
+    live: "https://blood-connect-seven-livid.vercel.app/",
+    gradient: "from-red-500/20 via-rose-500/20 to-orange-500/20",
+    icon: "🩸",
+    role: "Full-Stack Developer",
+    cardImage: "/projects/BloodConnect/LandingPage.png",
+    gallery: [
+      "/projects/BloodConnect/LandingPage.png",
+      "/projects/BloodConnect/HospitalDashboard.png",
+      "/projects/BloodConnect/HospitalInventory.png",
+      "/projects/BloodConnect/HospitalRequests.png",
+      "/projects/BloodConnect/HospitalMaps.png",
+      "/projects/BloodConnect/HospitalDonor.png",
+      "/projects/BloodConnect/HospitalCamps.png",
+      "/projects/BloodConnect/HospitalCommunity.png",
+      "/projects/BloodConnect/HospitalHistory.png",
+      "/projects/BloodConnect/DonorDashboard.png",
+      "/projects/BloodConnect/DonorResources.png",
+    ],
+    duration: "2025",
+    highlights: [
+      "Built role-based dashboards for hospitals, blood banks, and donors",
+      "Integrated geospatial maps for real-time blood availability awareness",
+      "Designed request/fulfillment workflows for emergency coordination",
+      "Implemented blood compatibility guidance and demand forecasting",
+      "Added multi-channel notifications for critical blood shortage alerts",
+    ],
+    features: [
+      "Role-based access",
+      "Geospatial maps",
+      "Inventory tracking",
+      "Compatibility guide",
+    ],
+  },
+  {
     title: "Smart Waste Management",
     stack: ["8051", "ESP32", "Supabase", "Next.js"],
     summary:
@@ -258,6 +299,10 @@ const projectsData = [
     gradient: "from-amber-500/20 via-orange-500/20 to-red-500/20",
     icon: "📝",
     role: "Full-Stack Developer",
+    cardImage: "/projects/ExamAutoGrader/Dashboard.png",
+    gallery: [
+      "/projects/ExamAutoGrader/Dashboard.png",
+    ],
     duration: "2025",
     highlights: [
       "Built OCR pipeline in Python for answer sheet text extraction",

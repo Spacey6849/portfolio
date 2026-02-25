@@ -1,11 +1,18 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
 export default function AnimatedCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
     const [cursorVariant, setCursorVariant] = useState("default")
+    const pathname = usePathname()
+
+    // Reset cursor on every client-side navigation
+    useEffect(() => {
+        setCursorVariant("default")
+    }, [pathname])
 
     useEffect(() => {
         const mouseMove = (e: MouseEvent) => {
@@ -23,21 +30,23 @@ export default function AnimatedCursor() {
     }, [])
 
     useEffect(() => {
-        const handleLinkHover = () => setCursorVariant("link")
-        const handleLinkLeave = () => setCursorVariant("default")
+        const handleMouseEnter = (e: MouseEvent) => {
+            if ((e.target as Element).closest("a, button")) {
+                setCursorVariant("link")
+            }
+        }
+        const handleMouseLeave = (e: MouseEvent) => {
+            if ((e.target as Element).closest("a, button")) {
+                setCursorVariant("default")
+            }
+        }
 
-        const links = document.querySelectorAll("a, button")
-
-        links.forEach((link) => {
-            link.addEventListener("mouseenter", handleLinkHover)
-            link.addEventListener("mouseleave", handleLinkLeave)
-        })
+        document.addEventListener("mouseover", handleMouseEnter)
+        document.addEventListener("mouseout", handleMouseLeave)
 
         return () => {
-            links.forEach((link) => {
-                link.removeEventListener("mouseenter", handleLinkLeave)
-                link.removeEventListener("mouseleave", handleLinkLeave)
-            })
+            document.removeEventListener("mouseover", handleMouseEnter)
+            document.removeEventListener("mouseout", handleMouseLeave)
         }
     }, [])
 

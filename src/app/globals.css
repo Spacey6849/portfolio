@@ -18,7 +18,10 @@ body {
 }
 
 @media (min-width: 768px) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     cursor: none !important;
   }
 }
@@ -33,4 +36,14 @@ h4 {
 ::selection {
   background: rgba(34, 211, 238, 0.25);
   color: #fff;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-200%) rotate(12deg);
+  }
+
+  100% {
+    transform: translateX(400%) rotate(12deg);
+  }
 }

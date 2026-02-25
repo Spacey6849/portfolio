@@ -71,7 +71,7 @@ export default function AnimatedCursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 rounded-full pointer-events-none z-[100] hidden md:block backdrop-blur-[2px]"
+            className="fixed top-0 left-0 rounded-full pointer-events-none z-[999] hidden md:block backdrop-blur-[2px]"
             variants={variants}
             animate={cursorVariant}
             transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}

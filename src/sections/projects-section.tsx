@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Calendar, ExternalLink, Github, ImageIcon, Star, X } from "lucide-react";
+import { ArrowRight, Calendar, ChevronLeft, ChevronRight, ExternalLink, Github, ImageIcon, Star, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { SectionHeading } from "@/components/section-heading";
 import { featuredProjects } from "@/data/site";
 
@@ -12,6 +12,38 @@ type Project = (typeof featuredProjects)[number];
 
 export function ProjectsSection() {
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const galleryImages: string[] = activeProject
+    ? ((activeProject as any).gallery ?? [])
+    : [];
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const prevImage = useCallback(
+    () =>
+      setLightboxIndex((prev) =>
+        prev !== null ? (prev - 1 + galleryImages.length) % galleryImages.length : null
+      ),
+    [galleryImages.length]
+  );
+  const nextImage = useCallback(
+    () =>
+      setLightboxIndex((prev) =>
+        prev !== null ? (prev + 1) % galleryImages.length : null
+      ),
+    [galleryImages.length]
+  );
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightboxIndex, closeLightbox, prevImage, nextImage]);
 
   return (
     <section id="projects" className="mx-auto max-w-6xl px-5 py-20">
@@ -198,7 +230,8 @@ export function ProjectsSection() {
                           {(activeProject as any).gallery.map((img: string, i: number) => (
                             <div
                               key={i}
-                              className="relative aspect-video overflow-hidden rounded-xl border border-white/10"
+                              className="relative aspect-video cursor-pointer overflow-hidden rounded-xl border border-white/10 transition-all duration-200 hover:border-cyan-400/40 hover:ring-1 hover:ring-cyan-400/20"
+                              onClick={() => setLightboxIndex(i)}
                             >
                               <Image
                                 src={img}
@@ -207,6 +240,7 @@ export function ProjectsSection() {
                                 className="object-cover transition-transform duration-300 hover:scale-110"
                                 sizes="150px"
                               />
+                              <div className="absolute inset-0 bg-black/0 transition-colors duration-200 hover:bg-black/10" />
                             </div>
                           ))}
                         </div>
@@ -301,6 +335,78 @@ export function ProjectsSection() {
                   </div>
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── Image Lightbox Overlay ─── */}
+      <AnimatePresence>
+        {lightboxIndex !== null && galleryImages[lightboxIndex] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl"
+            onClick={closeLightbox}
+          >
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={closeLightbox}
+              className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-zinc-900/80 p-3 text-zinc-300 transition-colors hover:bg-zinc-800 hover:text-white"
+              aria-label="Close lightbox"
+            >
+              <X size={20} />
+            </button>
+
+            {/* Image counter */}
+            <div className="absolute left-1/2 top-5 z-10 -translate-x-1/2 rounded-full border border-white/10 bg-zinc-900/70 px-4 py-1.5 text-xs font-medium text-zinc-400 backdrop-blur-sm">
+              {lightboxIndex + 1} / {galleryImages.length}
+            </div>
+
+            {/* Previous button */}
+            {galleryImages.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-zinc-900/80 p-3 text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white md:left-6"
+                aria-label="Previous image"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
+
+            {/* Next button */}
+            {galleryImages.length > 1 && (
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full border border-white/15 bg-zinc-900/80 p-3 text-zinc-300 transition-all hover:bg-zinc-800 hover:text-white md:right-6"
+                aria-label="Next image"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
+
+            {/* Main image */}
+            <motion.div
+              key={lightboxIndex}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative mx-16 my-16 h-[80vh] w-full max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={galleryImages[lightboxIndex]}
+                alt={`${activeProject?.title ?? "Project"} screenshot ${lightboxIndex + 1}`}
+                fill
+                className="rounded-2xl object-contain"
+                sizes="90vw"
+                priority
+              />
             </motion.div>
           </motion.div>
         )}

@@ -326,6 +326,7 @@ const projectsData = [
     details:
       "Building an AI-powered API service that ingests raw server, application, or system logs and returns clear, human-readable explanations to help developers diagnose issues faster without deep log expertise.",
     github: "https://github.com/Spacey6849/LogExplain",
+    live: "https://log-explain.vercel.app/",
     gradient: "from-slate-500/20 via-zinc-500/20 to-neutral-500/20",
     icon: "📋",
     role: "Backend Developer",
@@ -357,6 +358,7 @@ const projectsData = [
     details:
       "Developing an end-to-end remote patient monitoring system: ESP8266-based wearable sensor nodes stream vitals to a Supabase backend, displayed on both a React Native mobile app and a Next.js web dashboard with geo-tracking and threshold-based alerts.",
     github: "https://github.com/",
+    live: "https://palliative-care.vercel.app/home",
     gradient: "from-red-500/20 via-rose-500/20 to-pink-500/20",
     icon: "🏥",
     role: "Full-Stack & IoT Engineer",

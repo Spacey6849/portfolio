@@ -6,6 +6,7 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { AboutSection } from "@/sections/about-section";
 import { ContactSection } from "@/sections/contact-section";
 import { ExperienceSection } from "@/sections/experience-section";
+
 import { Footer } from "@/sections/footer";
 import { HeroSection } from "@/sections/hero-section";
 import { ProjectsSection } from "@/sections/projects-section";

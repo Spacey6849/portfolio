@@ -4,28 +4,33 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/data/site";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [projectsHovered, setProjectsHovered] = useState(false);
   const [activeSection, setActiveSection] = useState("#home");
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   const { scrollY } = useScroll();
 
   useEffect(() => setMounted(true), []);
 
-  // Hide navbar on scroll down, show on scroll up
+  // Track scrolled state for header styling
   useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    setHidden(latest > previous && latest > 150);
     setScrolled(latest > 20);
   });
 
   // Track active section via IntersectionObserver
   const setupObserver = useCallback(() => {
+    if (pathname !== "/") {
+      setActiveSection("#projects");
+      return () => {};
+    }
+
     const ids = navLinks.map((l) => l.href.replace("#", ""));
     const observer = new IntersectionObserver(
       (entries) => {
@@ -44,12 +49,20 @@ export function Navbar() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const cleanup = setupObserver();
     return cleanup;
   }, [setupObserver]);
+
+  const resolveHref = useCallback(
+    (href: string) => {
+      if (pathname === "/") return href;
+      return `/${href}`;
+    },
+    [pathname]
+  );
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -94,8 +107,8 @@ export function Navbar() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{
-          y: hidden && !open ? -100 : 0,
-          opacity: hidden && !open ? 0 : 1,
+          y: 0,
+          opacity: 1,
         }}
         transition={{ duration: 0.35, ease: "easeInOut" }}
         className={`fixed inset-x-0 top-4 z-50 mx-auto w-[min(92%,56rem)] border px-5 py-2.5 backdrop-blur-xl transition-all duration-300 ${open
@@ -111,7 +124,7 @@ export function Navbar() {
         <nav className="flex items-center justify-between">
           {/* Logo */}
           <a
-            href="#home"
+            href={resolveHref("#home")}
             className="group relative flex items-center text-sm font-bold text-white"
           >
             <span className="transition-colors group-hover:text-cyan-300">
@@ -123,10 +136,20 @@ export function Navbar() {
           <ul className="hidden items-center gap-1 md:flex">
             {navLinks.map((link) => {
               const isActive = activeSection === link.href;
+              const isProjects = link.href === "#projects";
               return (
-                <li key={link.href}>
+                <li
+                  key={link.href}
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (isProjects) setProjectsHovered(true);
+                  }}
+                  onMouseLeave={() => {
+                    if (isProjects) setProjectsHovered(false);
+                  }}
+                >
                   <a
-                    href={link.href}
+                    href={resolveHref(link.href)}
                     className={`relative rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors duration-200 ${isActive
                         ? "text-white"
                         : "text-zinc-400 hover:text-zinc-200"
@@ -145,6 +168,25 @@ export function Navbar() {
                     )}
                     <span className="relative z-10">{link.label}</span>
                   </a>
+
+                  <AnimatePresence>
+                    {isProjects && projectsHovered && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 12, scale: 0.92, filter: "blur(6px)" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: 10, scale: 0.96, filter: "blur(4px)" }}
+                        transition={{ type: "spring", stiffness: 380, damping: 24, mass: 0.6 }}
+                        className="absolute left-1/2 top-[calc(100%+0.7rem)] z-50 w-48 -translate-x-1/2 rounded-2xl border border-cyan-300/30 bg-zinc-950/95 p-2 shadow-[0_20px_50px_-20px_rgba(34,211,238,0.7)] backdrop-blur-xl"
+                      >
+                        <a
+                          href="/projects"
+                          className="block rounded-xl bg-gradient-to-r from-cyan-400/20 to-purple-500/20 px-3 py-2 text-center text-xs font-semibold text-cyan-100 transition-all duration-200 hover:from-cyan-400/30 hover:to-purple-500/30 hover:text-white"
+                        >
+                          View All Projects
+                        </a>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </li>
               );
             })}
@@ -152,7 +194,7 @@ export function Navbar() {
 
           {/* CTA Button — desktop */}
           <a
-            href="#contact"
+            href={resolveHref("#contact")}
             className="hidden rounded-full bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-1.5 text-xs font-semibold text-zinc-950 transition-opacity hover:opacity-90 md:inline-flex"
           >
             Let&apos;s Talk
@@ -185,7 +227,7 @@ export function Navbar() {
                   return (
                     <li key={link.href}>
                       <a
-                        href={link.href}
+                        href={resolveHref(link.href)}
                         onClick={() => setOpen(false)}
                         className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${isActive
                             ? "bg-white/10 text-white"
@@ -199,7 +241,16 @@ export function Navbar() {
                 })}
                 <li>
                   <a
-                    href="#contact"
+                    href="/projects"
+                    onClick={() => setOpen(false)}
+                    className="block rounded-xl bg-cyan-400/15 px-4 py-2.5 text-sm font-semibold text-cyan-200 transition-colors hover:bg-cyan-400/25 hover:text-cyan-100"
+                  >
+                    View All Projects
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={resolveHref("#contact")}
                     onClick={() => setOpen(false)}
                     className="mt-1 block rounded-xl bg-gradient-to-r from-cyan-400 to-purple-500 px-4 py-2.5 text-center text-sm font-semibold text-zinc-950"
                   >

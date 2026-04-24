@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
-    ArrowLeft,
     Calendar,
     ChevronLeft,
     ChevronRight,
@@ -12,9 +11,9 @@ import {
     X,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ImageLightbox } from "@/components/image-lightbox";
+import { Navbar } from "@/components/navbar";
 import { allProjects } from "@/data/site";
 
 type Project = (typeof allProjects)[number];
@@ -95,21 +94,9 @@ export default function ProjectsPage() {
 
     return (
         <div className="relative min-h-screen overflow-x-hidden bg-zinc-950 text-zinc-100">
-            {/* Fixed top bar */}
-            <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
-                <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:gap-4 sm:px-5 sm:py-4">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-3 py-1.5 text-xs text-zinc-300 transition-colors hover:bg-white/10 hover:text-white sm:gap-2 sm:px-4 sm:py-2 sm:text-sm"
-                    >
-                        <ArrowLeft size={14} /> Back
-                    </Link>
-                    <div className="h-5 w-px bg-white/10" />
-                    <h1 className="text-sm font-medium text-zinc-400">All Projects</h1>
-                </div>
-            </header>
+            <Navbar />
 
-            <main className="pb-20 pt-24 sm:pt-28">
+            <main className="pb-20 pt-28 sm:pt-32">
                 {/* Page Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

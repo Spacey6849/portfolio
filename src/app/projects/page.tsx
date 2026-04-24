@@ -192,11 +192,6 @@ export default function ProjectsPage() {
                                         </>
                                     )}
                                     <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-zinc-950/80 to-transparent" />
-                                    {(project as any).wip && (
-                                        <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/20 px-2.5 py-0.5 text-[11px] font-medium text-amber-200 backdrop-blur-sm">
-                                            <Wrench size={12} /> In Development
-                                        </span>
-                                    )}
                                 </div>
 
                                 {/* Content */}
@@ -419,12 +414,6 @@ export default function ProjectsPage() {
                                             ))}
                                         </ul>
                                     </div>
-
-                                    {(activeProject as any).wip && (
-                                        <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-3 py-1 text-[11px] font-medium text-amber-200 sm:px-4 sm:py-1.5 sm:text-xs">
-                                            <Wrench size={14} /> Under Development
-                                        </div>
-                                    )}
 
                                     <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
                                         {(activeProject as any).live && (
